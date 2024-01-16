@@ -22,7 +22,7 @@ parser.add_argument("--bf16", action="store_true")
 args = parser.parse_args()
 MODEL_PATH = args.from_pretrained
 TOKENIZER_PATH = args.local_tokenizer
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 
 tokenizer = LlamaTokenizer.from_pretrained(TOKENIZER_PATH)
 if args.bf16:
